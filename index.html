@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="main.js"></script>
+    <title>Cotizador</title>
+</head>
+<body>
+    <h1>Cotizador de productos</h1>
+
+    <form action="" method="POST" action="index.html">
+
+        <label for="">Producto</label>
+        <select name="form_producto" id="form_producto">
+            <option value="CPU" id="">CPU</option>
+            <option value="PANTALLA" id="">PANTALLA</option>
+            <option value="TECLADO" id="">TECLADO</option>
+            <option value="MOUSE" id="">MOUSE</option>
+        </select>
+        <br>
+        <br>
+        <label for="">Valor</label>
+        <input id="form_valor" type="text" name="form_valor" value="">
+        <br>
+        <br>
+        <label for="">Cantidad</label>
+        <input type="number" name="form_cantidad" id="form_cantidad">
+        <br><br>
+        <button type="button" name="button" onclick="agregarProducto()">Agregar producto</button>
+
+
+    </form>
+
+    <div id="carrito">
+
+    </div>
+
+
+    
+</body>
+</html>
