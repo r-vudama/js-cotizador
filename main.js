@@ -34,16 +34,13 @@ function agregarProducto() {
         carrito.appendChild(nuevoSubtotal);
         nuevoSubtotal.setAttribute('name', 'nuevoSubtotal');
         nuevoSubtotal.appendChild(elementoSubtotal);
- 
 
-
-   calcular_total();
+   calcularTotal();
 }
 
-function calcular_total(){
+function calcularTotal(){
 
     var subtotales = document.getElementsByName('nuevoSubtotal');
-    var total = document.createElement('div')
 
     var suma = 0;
 
@@ -51,9 +48,8 @@ function calcular_total(){
         suma = suma + Number(subtotales[i].innerText);
     }
     
-    carrito.appendChild(total);
-    total.setAttribute('id', 'total');
-    total.appendChild(document.createTextNode(`Total: $${suma}`));
+    var total = document.getElementById('total');
+    total.innerHTML = `Total: $${suma}`
 
 }
 
