@@ -10,12 +10,14 @@ function agregarProducto() {
     var nuevoProducto = document.createElement('p');
     var nuevoValor = document.createElement('p');
     var nuevoCantidad = document.createElement('p');
+    var textoSubtotal = document.createElement('p');
     var nuevoSubtotal = document.createElement('p');
     var nuevoQuitar = document.createElement('p');
 
     var elementoProducto = document.createTextNode(`Producto: ${producto.value} `);
     var elementoValor = document.createTextNode(`Valor: $${valor.value} `);
     var elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
+    var elementoTextoSubtotal = document.createTextNode('Subtotal: ');
     var elementoSubtotal = document.createTextNode(subtotal);
     var elementoQuitar = document.createTextNode('Quitar producto');
 
@@ -30,6 +32,9 @@ function agregarProducto() {
         nuevoItem.appendChild(nuevoCantidad);
         nuevoCantidad.setAttribute('id', 'nuevoCantidad');
         nuevoCantidad.appendChild(elementoCantidad);
+
+        nuevoItem.appendChild(textoSubtotal);
+        textoSubtotal.appendChild(elementoTextoSubtotal);
 
         nuevoItem.appendChild(nuevoSubtotal);
         nuevoSubtotal.setAttribute('name', 'nuevoSubtotal');
