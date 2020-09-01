@@ -5,43 +5,41 @@ function agregarProducto() {
     var subtotal = Number(valor.value) * Number(cantidad.value);
     var carrito = document.getElementById('carrito');
 
-    var nuevoProducto = document.createElement('div')
-    var elementoProducto = document.createTextNode(`Producto: ${producto.value} `);
+    var nuevoItem = document.createElement('div');
+    nuevoItem.setAttribute('id', 'nuevoItem');
+    var nuevoProducto = document.createElement('p');
+    var nuevoValor = document.createElement('p');
+    var nuevoCantidad = document.createElement('p');
+    var nuevoSubtotal = document.createElement('p');
+    var nuevoQuitar = document.createElement('p');
 
-        carrito.appendChild(nuevoProducto);
+    var elementoProducto = document.createTextNode(`Producto: ${producto.value} `);
+    var elementoValor = document.createTextNode(`Valor: $${valor.value} `);
+    var elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
+    var elementoSubtotal = document.createTextNode(subtotal);
+    var elementoQuitar = document.createTextNode('Quitar producto');
+
+        nuevoItem.appendChild(nuevoProducto);
         nuevoProducto.setAttribute('id', 'nuevoProducto');
         nuevoProducto.appendChild(elementoProducto);
 
-    var nuevoValor = document.createElement('div')
-    var elementoValor = document.createTextNode(`Valor: $${valor.value} `);
-
-        carrito.appendChild(nuevoValor);
+        nuevoItem.appendChild(nuevoValor);
         nuevoValor.setAttribute('id', 'nuevoValor');
         nuevoValor.appendChild(elementoValor);
 
-    var nuevoCantidad = document.createElement('div');
-    var elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
-
-        carrito.appendChild(nuevoCantidad);
+        nuevoItem.appendChild(nuevoCantidad);
         nuevoCantidad.setAttribute('id', 'nuevoCantidad');
         nuevoCantidad.appendChild(elementoCantidad);
 
-    var nuevoSubtotal = document.createElement('div')
-    var elementoSubtotal = document.createTextNode(subtotal);
-
-        carrito.appendChild(nuevoSubtotal);
+        nuevoItem.appendChild(nuevoSubtotal);
         nuevoSubtotal.setAttribute('name', 'nuevoSubtotal');
         nuevoSubtotal.appendChild(elementoSubtotal);
 
-
-    var nuevoQuitar = document.createElement('div')
-    var elementoQuitar = document.createTextNode('Quitar producto');
-
-        carrito.appendChild(nuevoQuitar);
+        nuevoItem.appendChild(nuevoQuitar);
         nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
         nuevoQuitar.appendChild(elementoQuitar);
 
-
+    carrito.appendChild(nuevoItem)
 
    calcularTotal();
 }
