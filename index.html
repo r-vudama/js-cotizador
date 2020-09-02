@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script defer src="main.js"></script>
     <title>Cotizador</title>
 </head>
 <body>
-    <h1>Cotizador de tienda de música</h1>
+    <h1>Cotizador - Tienda de música</h1>
 
-    <form action="" method="POST" action="index.html">
+    <div class="contenedor__form-y-total">
 
-        <label for="">Producto</label>
-        <select name="form_producto" id="form_producto">
-            <option value="GUITARRA" id="">GUITARRA</option>
-            <option value="BAJO" id="">BAJO</option>
-            <option value="CUERDAS GUITARRA" id="">CUERDAS GUITARRA</option>
-            <option value="CUERDAS BAJO" id="">CUERDAS BAJO</option>
-        </select>
-        <br>
-        <br>
-        <label for="">Valor</label>
-        <input id="form_valor" type="text" name="form_valor" value="">
-        <br>
-        <br>
-        <label for="">Cantidad</label>
-        <input type="number" name="form_cantidad" id="form_cantidad">
-        <br><br>
-        <button type="button" name="button" onclick="agregarProducto()">Agregar producto</button>
+        <form action="" method="POST" action="index.html" class="formulario">
+            <div class="formulario__select">
+                <label for="">Producto</label>
+                <select name="form_producto" id="form_producto">
+                    <option value="GUITARRA" id="">GUITARRA</option>
+                    <option value="BAJO" id="">BAJO</option>
+                    <option value="CUERDAS GUITARRA" id="">CUERDAS GUITARRA</option>
+                    <option value="CUERDAS BAJO" id="">CUERDAS BAJO</option>
+                </select>
+            </div>
 
+            <div class="formulario__input">
+                <label for="">Valor</label>
+                <input id="form_valor" type="text" name="form_valor" value="">
+            </div>
 
-    </form>
+            <div class="formulario__input">
+                <label for="">Cantidad</label>
+                <input type="number" name="form_cantidad" id="form_cantidad">
+            </div>
 
-    <div id="carrito"></div>
+            <div class="formulario__boton">
+                <button type="button" name="button" onclick="agregarProducto()">Agregar producto</button>
+            </div>
+        </form>
 
-    <div id="carritoTotal">
-        <p id="total">Total: $</p>
+        <div id="carritoTotal" class="carritoTotal">
+            <p id="total">Total: $ 0</p>
+        </div>
+
     </div>
+
+    <div id="carrito" class="carrito"></div>
 
     
 

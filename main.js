@@ -43,6 +43,7 @@ function agregarProducto() {
 
         nuevoItem.appendChild(nuevoQuitar);
         nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
+        nuevoQuitar.setAttribute('class', 'quitarProducto');
         nuevoQuitar.appendChild(elementoQuitar);
 
     carrito.appendChild(nuevoItem)
