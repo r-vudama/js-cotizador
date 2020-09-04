@@ -8,11 +8,43 @@
     <title>Cotizador</title>
 </head>
 <body>
-    <h1>Cotizador - Tienda de música</h1>
+    <h1>Tienda de música</h1>
+
+    <div class="articulos">
+        <div class="articulos__item">
+            <img src="img/epiphone_les_paul.jpg" alt="" width="300">
+            <p value="LES_PAUL" id="articulo_producto">Epiphone Les Paul</p>
+            <p>$<span id="articulo_valor">25000</span></p>
+            <label for="">Cantidad:</label>
+            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1">
+            <button type="button" name="button" onclick="agregarProducto()">Agregar producto</button>
+        </div>
+
+        <div class="articulos__item">
+            <img src="img/epiphone_sg.png" alt="" width="300">
+            <p value="LES_PAUL" id="articulo_producto">Epiphone SG</p>
+            <p>$<span id="articulo_valor">23500</span></p>
+            <label for="">Cantidad:</label>
+            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1">
+            <button type="button" id="botonAgregar" name="button" onclick="agregarProducto()">Agregar producto</button>
+        </div>
+
+
+    </div>
 
     <div class="contenedor__form-y-total">
 
-        <form action="" method="POST" action="index.html" class="formulario">
+        <div id="carritoTotal" class="carritoTotal"><p id="total">Total: $ 0</p></div>
+
+    </div>
+
+    <div id="carrito" class="carrito"></div>
+    
+</body>
+</html>
+
+
+        <!-- <form action="" method="POST" action="index.html" class="formulario">
             <div class="formulario__select">
                 <label for="">Producto</label>
                 <select name="form_producto" id="form_producto">
@@ -36,19 +68,4 @@
             <div class="formulario__boton">
                 <button type="button" name="button" onclick="agregarProducto()">Agregar producto</button>
             </div>
-        </form>
-
-        <div id="carritoTotal" class="carritoTotal">
-            <p id="total">Total: $ 0</p>
-        </div>
-
-    </div>
-
-    <div id="carrito" class="carrito"></div>
-
-    
-
-
-    
-</body>
-</html>
+        </form> -->

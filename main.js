@@ -1,8 +1,8 @@
 function agregarProducto() {
-    var producto = document.getElementById('form_producto');
-    var valor = document.getElementById('form_valor');
-    var cantidad = document.getElementById('form_cantidad');
-    var subtotal = Number(valor.value) * Number(cantidad.value);
+    var producto = document.getElementById('articulo_producto');
+    var valor = document.getElementById('articulo_valor');
+    var cantidad = document.getElementById('articulo_cantidad');
+    var subtotal = Number(valor.innerText) * Number(cantidad.value);
     var carrito = document.getElementById('carrito');
 
     var nuevoItem = document.createElement('div');
@@ -14,8 +14,8 @@ function agregarProducto() {
     var subtotalProducto = document.createElement('span');
     var nuevoQuitar = document.createElement('p');
 
-    var elementoProducto = document.createTextNode(`Producto: ${producto.value} `);
-    var elementoValor = document.createTextNode(`Valor: $${valor.value} `);
+    var elementoProducto = document.createTextNode(`Producto: ${producto.innerText} `);
+    var elementoValor = document.createTextNode(`Valor: $${valor.innerText}`);
     var elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
     var elementoTextoSubtotal = document.createTextNode('Subtotal: $');
     var elementoSubtotal = document.createTextNode(subtotal);
@@ -72,3 +72,12 @@ function eliminarProducto(producto){
    calcularTotal();
 
 }
+
+// var boton = document.getElementById('botonAgregar');
+
+// boton.addEventListener('click', function(e){
+
+
+// })
+
+

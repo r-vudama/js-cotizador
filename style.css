@@ -21,39 +21,44 @@ h1{
     margin: 30px auto
 } 
 
-.contenedor__form-y-total{
+.articulos{
     margin: auto;
     width: 70%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
 }
 
-.formulario{
-    width: 100%;
-}
-
-.formulario__select,
-.formulario__input,
-.formulario__boton{
+.articulos__item{
+    margin: 25px;
+    width: 300px;
+    height: 430px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    flex-direction: column;
+    border: 1px solid rgb(105, 105, 105);
+    border-radius: 10px;
 }
 
-label{
-    width: 100px;
-    font-size: 20px;
+.articulos__item img{
+    width: 230px;
 }
 
-.formulario__select select,
-.formulario__input input,
-.formulario__boton button{
-    width: 300px;
-    height: 35px;
-    margin: 10px 0;
-    padding: 5px;
+.articulos__item p,
+.articulos__item input,
+.articulos__item label,
+.articulos__item button{
+    font-size: 16px;
+    font-weight: bold;
+    margin: 3px 0;
+}
+
+.articulos__item input{
+    width: 50px;
+}
+
+.articulos__item button{
+    padding: 10px 20px;
 }
 
 .carrito{
@@ -64,7 +69,7 @@ label{
     flex-wrap: wrap;
 }
 
-.formulario__boton button{
+.articulos button{
     background: rgb(1, 151, 1);
     color: #fff;
     border: none;
@@ -72,7 +77,7 @@ label{
     transition: .3s all ease;
 }
 
-.formulario__boton button:hover{
+.articulos button:hover{
     background: rgb(0, 88, 0);
 }
 
