@@ -1,25 +1,25 @@
 function agregarProducto() {
-    var producto = document.getElementById('articulo_producto');
-    var valor = document.getElementById('articulo_valor');
-    var cantidad = document.getElementById('articulo_cantidad');
-    var subtotal = Number(valor.innerText) * Number(cantidad.value);
-    var carrito = document.getElementById('carrito');
+    const producto = document.getElementById('articulo_producto');
+    const valor = document.getElementById('articulo_valor');
+    const cantidad = document.getElementById('articulo_cantidad');
+    const subtotal = Number(valor.innerText) * Number(cantidad.value);
+    const carrito = document.getElementById('carrito');
 
-    var nuevoItem = document.createElement('div');
+    const nuevoItem = document.createElement('div');
     nuevoItem.setAttribute('id', 'nuevoItem');
-    var nuevoProducto = document.createElement('p');
-    var nuevoValor = document.createElement('p');
-    var nuevoCantidad = document.createElement('p');
-    var textoSubtotal = document.createElement('p');
-    var subtotalProducto = document.createElement('span');
-    var nuevoQuitar = document.createElement('p');
+    const nuevoProducto = document.createElement('p');
+    const nuevoValor = document.createElement('p');
+    const nuevoCantidad = document.createElement('p');
+    const textoSubtotal = document.createElement('p');
+    const subtotalProducto = document.createElement('span');
+    const nuevoQuitar = document.createElement('p');
 
-    var elementoProducto = document.createTextNode(`Producto: ${producto.innerText} `);
-    var elementoValor = document.createTextNode(`Valor: $${valor.innerText}`);
-    var elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
-    var elementoTextoSubtotal = document.createTextNode('Subtotal: $');
-    var elementoSubtotal = document.createTextNode(subtotal);
-    var elementoQuitar = document.createTextNode('Quitar producto');
+    const elementoProducto = document.createTextNode(`Producto: ${producto.innerText} `);
+    const elementoValor = document.createTextNode(`Valor: $${valor.innerText}`);
+    const elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
+    const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
+    const elementoSubtotal = document.createTextNode(subtotal);
+    const elementoQuitar = document.createTextNode('Quitar producto');
 
         nuevoItem.appendChild(nuevoProducto);
         nuevoProducto.setAttribute('id', 'nuevoProducto');
@@ -53,15 +53,15 @@ function agregarProducto() {
 
 function calcularTotal(){
 
-    var subtotales = document.getElementsByName('subtotalProducto');
+    let subtotales = document.getElementsByName('subtotalProducto');
 
-    var suma = 0;
+    let suma = 0;
 
-    for (var i = 0; i < subtotales.length; i++) {
+    for (i = 0; i < subtotales.length; i++) {
         suma = suma + Number(subtotales[i].innerText);
     }
     
-    var total = document.getElementById('total');
+    let total = document.getElementById('total');
     total.innerHTML = `Total: $${suma}`;
 
 }
@@ -73,11 +73,13 @@ function eliminarProducto(producto){
 
 }
 
-// var boton = document.getElementById('botonAgregar');
 
-// boton.addEventListener('click', function(e){
+let botones = document.querySelectorAll(".boton");
 
+for (let i = 0 ; i < botones.length ; i++) {
 
-// })
+    botones[i].addEventListener("click", function(){
 
-
+        agregarProducto();
+    })
+}
