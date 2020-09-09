@@ -1,54 +1,120 @@
-function agregarProducto() {
-    const producto = document.getElementById('articulo_producto');
-    const valor = document.getElementById('articulo_valor');
-    const cantidad = document.getElementById('articulo_cantidad');
-    const subtotal = Number(valor.innerText) * Number(cantidad.value);
-    const carrito = document.getElementById('carrito');
+class Articulo {
+    constructor(marca, valor, cantidad) {
+        this.marca = marca;
+        this.valor = valor;
+        this.cantidad = cantidad;
+    }
+}
+const epiphoneLesPaul = new Articulo('Epiphone Les Paul', 25000, 1);
+const epiphoneSG = new Articulo('Epiphone SG', 23500, 1);
 
-    const nuevoItem = document.createElement('div');
-    nuevoItem.setAttribute('id', 'nuevoItem');
-    const nuevoProducto = document.createElement('p');
-    const nuevoValor = document.createElement('p');
-    const nuevoCantidad = document.createElement('p');
-    const textoSubtotal = document.createElement('p');
-    const subtotalProducto = document.createElement('span');
-    const nuevoQuitar = document.createElement('p');
 
-    const elementoProducto = document.createTextNode(`Producto: ${producto.innerText} `);
-    const elementoValor = document.createTextNode(`Valor: $${valor.innerText}`);
-    const elementoCantidad = document.createTextNode(`Cantidad: ${cantidad.value} `);
-    const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
-    const elementoSubtotal = document.createTextNode(subtotal);
-    const elementoQuitar = document.createTextNode('Quitar producto');
 
-        nuevoItem.appendChild(nuevoProducto);
-        nuevoProducto.setAttribute('id', 'nuevoProducto');
-        nuevoProducto.appendChild(elementoProducto);
+let botones = document.querySelectorAll(".boton");
 
-        nuevoItem.appendChild(nuevoValor);
-        nuevoValor.setAttribute('id', 'nuevoValor');
-        nuevoValor.appendChild(elementoValor);
+for (let i = 0 ; i < botones.length ; i++) {
 
-        nuevoItem.appendChild(nuevoCantidad);
-        nuevoCantidad.setAttribute('id', 'nuevoCantidad');
-        nuevoCantidad.appendChild(elementoCantidad);
+    botones[i].addEventListener("click", function(){
+        
+        if(botones[i] == botones[0]){
 
-        nuevoItem.appendChild(textoSubtotal);
-        textoSubtotal.setAttribute('id', 'nuevoSubtotal');
-        textoSubtotal.appendChild(elementoTextoSubtotal);
+            const subtotal = Number(epiphoneLesPaul.valor) * Number(epiphoneLesPaul.cantidad);
 
-        textoSubtotal.appendChild(subtotalProducto);
-        subtotalProducto.setAttribute('name', 'subtotalProducto');
-        subtotalProducto.appendChild(elementoSubtotal);
+            const nuevoItem = document.createElement('div');
+            nuevoItem.setAttribute('id', 'nuevoItem');
+            const nuevoProducto = document.createElement('p');
+            const nuevoValor = document.createElement('p');
+            const nuevoCantidad = document.createElement('p');
+            const textoSubtotal = document.createElement('p');
+            const subtotalProducto = document.createElement('span');
+            const nuevoQuitar = document.createElement('p');
 
-        nuevoItem.appendChild(nuevoQuitar);
-        nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
-        nuevoQuitar.setAttribute('class', 'quitarProducto');
-        nuevoQuitar.appendChild(elementoQuitar);
+            const elementoProducto = document.createTextNode(`Producto: ${epiphoneLesPaul.marca} `);
+            const elementoValor = document.createTextNode(`Valor: $${epiphoneLesPaul.valor}`);
+            const elementoCantidad = document.createTextNode(`Cantidad: ${epiphoneLesPaul.cantidad} `);
+            const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
+            const elementoSubtotal = document.createTextNode(subtotal);
+            const elementoQuitar = document.createTextNode('Quitar producto');
 
-    carrito.appendChild(nuevoItem)
+                nuevoItem.appendChild(nuevoProducto);
+                nuevoProducto.setAttribute('id', 'nuevoProducto');
+                nuevoProducto.appendChild(elementoProducto);
 
-   calcularTotal();
+                nuevoItem.appendChild(nuevoValor);
+                nuevoValor.setAttribute('id', 'nuevoValor');
+                nuevoValor.appendChild(elementoValor);
+
+                nuevoItem.appendChild(nuevoCantidad);
+                nuevoCantidad.setAttribute('id', 'nuevoCantidad');
+                nuevoCantidad.appendChild(elementoCantidad);
+
+                nuevoItem.appendChild(textoSubtotal);
+                textoSubtotal.setAttribute('id', 'nuevoSubtotal');
+                textoSubtotal.appendChild(elementoTextoSubtotal);
+
+                textoSubtotal.appendChild(subtotalProducto);
+                subtotalProducto.setAttribute('name', 'subtotalProducto');
+                subtotalProducto.appendChild(elementoSubtotal);
+
+                nuevoItem.appendChild(nuevoQuitar);
+                nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
+                nuevoQuitar.setAttribute('class', 'quitarProducto');
+                nuevoQuitar.appendChild(elementoQuitar);
+
+            carrito.appendChild(nuevoItem)
+
+        calcularTotal();
+
+        } else if (botones[i] == botones[1]){
+            const subtotal = Number(epiphoneSG.valor) * Number(epiphoneSG.cantidad);
+
+            const nuevoItem = document.createElement('div');
+            nuevoItem.setAttribute('id', 'nuevoItem');
+            const nuevoProducto = document.createElement('p');
+            const nuevoValor = document.createElement('p');
+            const nuevoCantidad = document.createElement('p');
+            const textoSubtotal = document.createElement('p');
+            const subtotalProducto = document.createElement('span');
+            const nuevoQuitar = document.createElement('p');
+
+            const elementoProducto = document.createTextNode(`Producto: ${epiphoneSG.marca} `);
+            const elementoValor = document.createTextNode(`Valor: $${epiphoneSG.valor}`);
+            const elementoCantidad = document.createTextNode(`Cantidad: ${epiphoneSG.cantidad} `);
+            const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
+            const elementoSubtotal = document.createTextNode(subtotal);
+            const elementoQuitar = document.createTextNode('Quitar producto');
+
+                nuevoItem.appendChild(nuevoProducto);
+                nuevoProducto.setAttribute('id', 'nuevoProducto');
+                nuevoProducto.appendChild(elementoProducto);
+
+                nuevoItem.appendChild(nuevoValor);
+                nuevoValor.setAttribute('id', 'nuevoValor');
+                nuevoValor.appendChild(elementoValor);
+
+                nuevoItem.appendChild(nuevoCantidad);
+                nuevoCantidad.setAttribute('id', 'nuevoCantidad');
+                nuevoCantidad.appendChild(elementoCantidad);
+
+                nuevoItem.appendChild(textoSubtotal);
+                textoSubtotal.setAttribute('id', 'nuevoSubtotal');
+                textoSubtotal.appendChild(elementoTextoSubtotal);
+
+                textoSubtotal.appendChild(subtotalProducto);
+                subtotalProducto.setAttribute('name', 'subtotalProducto');
+                subtotalProducto.appendChild(elementoSubtotal);
+
+                nuevoItem.appendChild(nuevoQuitar);
+                nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
+                nuevoQuitar.setAttribute('class', 'quitarProducto');
+                nuevoQuitar.appendChild(elementoQuitar);
+
+            carrito.appendChild(nuevoItem)
+
+        calcularTotal();
+        }
+    })
+
 }
 
 function calcularTotal(){
@@ -71,15 +137,4 @@ function eliminarProducto(producto){
    producto.parentElement.remove();
    calcularTotal();
 
-}
-
-
-let botones = document.querySelectorAll(".boton");
-
-for (let i = 0 ; i < botones.length ; i++) {
-
-    botones[i].addEventListener("click", function(){
-
-        agregarProducto();
-    })
 }
