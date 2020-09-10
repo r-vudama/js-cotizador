@@ -1,3 +1,5 @@
+let arrayArticulos = [];
+
 class Articulo {
     constructor(marca, valor, cantidad) {
         this.marca = marca;
@@ -50,20 +52,20 @@ class Articulo {
                 nuevoQuitar.appendChild(elementoQuitar);
 
             carrito.appendChild(nuevoItem)
+            arrayArticulos.push(this);
 
         calcularTotal();
 
         }
     }
 }
+
 const epiphoneLesPaul = new Articulo('Epiphone Les Paul', 82134, 1);
 const epiphoneSG = new Articulo('Epiphone SG', 67137, 1);
 const squierJazz = new Articulo('Squier Jazz Bass', 69088, 1);
 const squierPrecision = new Articulo('Squier CV Precision', 82932, 1);
 
-
-
-let botones = document.querySelectorAll(".boton");
+const botones = document.querySelectorAll(".boton");
 
 for (let i = 0 ; i < botones.length ; i++) {
 
