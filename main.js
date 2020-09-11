@@ -47,12 +47,13 @@ class Articulo {
                 subtotalProducto.appendChild(elementoSubtotal);
 
                 nuevoItem.appendChild(nuevoQuitar);
-                nuevoQuitar.setAttribute('onclick', 'eliminarProducto(this)');
+                nuevoQuitar.setAttribute('onclick', 'eliminarArticulo(this)');
                 nuevoQuitar.setAttribute('class', 'quitarProducto');
                 nuevoQuitar.appendChild(elementoQuitar);
 
             carrito.appendChild(nuevoItem)
-            arrayArticulos.push(this);
+
+            arrayArticulos = [...arrayArticulos, this]
 
         calcularTotal();
 
@@ -99,9 +100,9 @@ function calcularTotal(){
 
 }
 
-function eliminarProducto(producto){
+function eliminarArticulo(articulo){
 
-   producto.parentElement.remove();
+   articulo.parentElement.remove();
    calcularTotal();
 
 }
