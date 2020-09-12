@@ -53,8 +53,20 @@ class Articulo {
 
             carrito.appendChild(nuevoItem)
 
-            arrayArticulos = [...arrayArticulos, this]
 
+            // agrego al array 
+            let resultado = arrayArticulos.find(producto => producto.marca == marca)
+            if (resultado) {
+                resultado.cantidad++;
+            } else { 
+                const productoNuevo = {
+                    marca: marca,
+                    valor: valor,
+                    cantidad: 1
+                }
+                arrayArticulos = [...arrayArticulos, productoNuevo]
+            }
+            
         calcularTotal();
 
         }
