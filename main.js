@@ -8,6 +8,33 @@ class Articulo {
 
         this.agregarArticulo = function (){
 
+            if (arrayArticulos.length > 0) {
+                for (let i = 0; i < arrayArticulos.length; i++) {
+                    if (arrayArticulos[i].marca == marca) {
+                        arrayArticulos[i].cantidad++;
+                        this.crearArticulo()
+                        return
+                    }
+                }
+                arrayArticulos = [...arrayArticulos, this]
+                this.crearArticulo()
+            } else {
+                arrayArticulos = [...arrayArticulos, this]
+                this.crearArticulo()
+            }
+
+        }
+
+        this.quitarArticulo = function (){
+            var resultado = arrayArticulos.find(elemento => elemento.marca == marca)
+            if (resultado) {
+
+                resultado.cantidad--;
+            }
+        }
+
+        this.crearArticulo = function (){
+
             const subtotal = Number(this.valor) * Number(this.cantidad);
 
             const nuevoItem = document.createElement('div');
@@ -18,54 +45,40 @@ class Articulo {
             const textoSubtotal = document.createElement('p');
             const subtotalProducto = document.createElement('span');
             const nuevoQuitar = document.createElement('p');
-
+        
             const elementoProducto = document.createTextNode(`Producto: ${this.marca} `);
             const elementoValor = document.createTextNode(`Valor: $${this.valor}`);
             const elementoCantidad = document.createTextNode(`Cantidad: ${this.cantidad} `);
             const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
             const elementoSubtotal = document.createTextNode(subtotal);
             const elementoQuitar = document.createTextNode('Quitar producto');
-
+        
                 nuevoItem.appendChild(nuevoProducto);
                 nuevoProducto.setAttribute('id', 'nuevoProducto');
                 nuevoProducto.appendChild(elementoProducto);
-
+        
                 nuevoItem.appendChild(nuevoValor);
                 nuevoValor.setAttribute('id', 'nuevoValor');
                 nuevoValor.appendChild(elementoValor);
-
+        
                 nuevoItem.appendChild(nuevoCantidad);
                 nuevoCantidad.setAttribute('id', 'nuevoCantidad');
                 nuevoCantidad.appendChild(elementoCantidad);
-
+        
                 nuevoItem.appendChild(textoSubtotal);
                 textoSubtotal.setAttribute('id', 'nuevoSubtotal');
                 textoSubtotal.appendChild(elementoTextoSubtotal);
-
+        
                 textoSubtotal.appendChild(subtotalProducto);
                 subtotalProducto.setAttribute('name', 'subtotalProducto');
                 subtotalProducto.appendChild(elementoSubtotal);
-
+        
                 nuevoItem.appendChild(nuevoQuitar);
-                nuevoQuitar.setAttribute('onclick', 'eliminarArticulo(this)');
+                nuevoQuitar.setAttribute('onclick', 'eliminarArticulo(this);');
                 nuevoQuitar.setAttribute('class', 'quitarProducto');
                 nuevoQuitar.appendChild(elementoQuitar);
-
+        
             carrito.appendChild(nuevoItem)
-
-
-            // agrego al array 
-            let resultado = arrayArticulos.find(producto => producto.marca == marca)
-            if (resultado) {
-                resultado.cantidad++;
-            } else { 
-                const productoNuevo = {
-                    marca: marca,
-                    valor: valor,
-                    cantidad: 1
-                }
-                arrayArticulos = [...arrayArticulos, productoNuevo]
-            }
             
         calcularTotal();
 
@@ -100,21 +113,17 @@ for (let i = 0 ; i < botones.length ; i++) {
 function calcularTotal(){
 
     let subtotales = document.getElementsByName('subtotalProducto');
-
     let suma = 0;
-
     for (i = 0; i < subtotales.length; i++) {
         suma = suma + Number(subtotales[i].innerText);
     }
-    
     let total = document.getElementById('total');
     total.innerHTML = `Total: $${suma}`;
-
 }
 
 function eliminarArticulo(articulo){
 
-   articulo.parentElement.remove();
-   calcularTotal();
+    articulo.parentElement.remove();
+    calcularTotal();
 
 }
