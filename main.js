@@ -8,32 +8,41 @@ class Articulo {
 
         this.agregarArticulo = function (){
 
-            if (arrayArticulos.length > 0) {
-                for (let i = 0; i < arrayArticulos.length; i++) {
-                    if (arrayArticulos[i].marca == marca) {
-                        arrayArticulos[i].cantidad++;
+            const existe = arrayArticulos.some(producto => producto.marca === marca);
+
+            if (existe) {
+                arrayArticulos.map(producto => {
+                    if (producto.marca === marca) {
+                        producto.cantidad++;
                         this.crearArticulo()
-                        return
+                        return producto;
+                    } else {
+                        return producto;
                     }
-                }
-                arrayArticulos = [...arrayArticulos, this]
-                this.crearArticulo()
+                });
+                arrayArticulos = [...arrayArticulos];
             } else {
                 arrayArticulos = [...arrayArticulos, this]
                 this.crearArticulo()
             }
-
         }
 
         this.quitarArticulo = function (){
             var resultado = arrayArticulos.find(elemento => elemento.marca == marca)
             if (resultado) {
 
-                resultado.cantidad--;
+                resultado.cantidad = 0;
             }
         }
 
         this.crearArticulo = function (){
+
+            var arrayJson = JSON.stringify(arrayArticulos);
+            localStorage.setItem('productos', arrayJson);
+            // localStorage.getItem(arrayArticulos);
+            // let productosLS = localStorage.getItem('productos');
+            // let productosJson = JSON.parse(productosLS)
+            // console.log(productosJson)
 
             const subtotal = Number(this.valor) * Number(this.cantidad);
 
@@ -107,8 +116,9 @@ for (let i = 0 ; i < botones.length ; i++) {
             squierPrecision.agregarArticulo();
         }
     })
-
 }
+
+
 
 function calcularTotal(){
 
@@ -125,5 +135,6 @@ function eliminarArticulo(articulo){
 
     articulo.parentElement.remove();
     calcularTotal();
+    localStorage.clear()
 
 }
