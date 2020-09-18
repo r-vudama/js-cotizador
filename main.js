@@ -14,12 +14,12 @@ class Articulo {
                 arrayArticulos.map(producto => {
                     if (producto.marca === marca) {
                         producto.cantidad++;
-                        this.crearArticulo()
                         return producto;
                     } else {
                         return producto;
                     }
                 });
+                this.crearArticulo()
                 arrayArticulos = [...arrayArticulos];
             } else {
                 arrayArticulos = [...arrayArticulos, this]
@@ -30,7 +30,6 @@ class Articulo {
         this.quitarArticulo = function (){
             var resultado = arrayArticulos.find(elemento => elemento.marca == marca)
             if (resultado) {
-
                 resultado.cantidad = 0;
             }
         }
@@ -135,6 +134,6 @@ function eliminarArticulo(articulo){
 
     articulo.parentElement.remove();
     calcularTotal();
-    localStorage.clear()
+    // localStorage.clear()
 
 }
