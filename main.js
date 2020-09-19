@@ -87,6 +87,15 @@ class Articulo {
                 nuevoQuitar.appendChild(elementoQuitar);
         
             carrito.appendChild(nuevoItem)
+
+            carrito.innerHTML = `  
+            <div id="nuevoItem">
+                <p id="nuevoProducto">Producto: ${this.marca} </p>
+                <p id="nuevoValor">Valor: ${this.valor} </p>
+                <p id="nuevoCantidad">Cantidad: ${this.cantidad}  </p>
+                <p id="nuevoSubtotal">Subtotal: $<span name="subtotalProducto">${subtotal}</span></p>
+                <p onclick="eliminarArticulo(this)" class="quitarProducto">Quitar producto</p>
+            </div>`
             
         calcularTotal();
 
