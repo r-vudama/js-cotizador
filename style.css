@@ -132,3 +132,21 @@ h1{
     font-weight: bold;
     margin: 15px 0;
 }
+
+#listado{
+    margin: auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+#listado div{
+    justify-content: center;
+
+}
+
+#listado button{
+    width: 100%;
+}

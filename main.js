@@ -10,154 +10,28 @@ class Articulo {
         this.agregarArticulo = function (){
 
             const existe = arrayArticulos.some(producto => producto.marca === marca);
-
             if (existe) {
                 arrayArticulos.map(producto => {
                     if (producto.marca === marca) {
-                        producto.cantidad++;               
+                        producto.cantidad++;            
                         return producto;
                     } else {
                         return producto;
                     }
                 });
-                this.reemplazarArticulo()
+                this.enviarJson()
+                calcularTotal();
                 arrayArticulos = [...arrayArticulos];
             } else {
                 arrayArticulos = [...arrayArticulos, this]
-                this.crearArticulo()   
+                this.enviarJson()  
+                calcularTotal(); 
             }
         }
 
-        this.quitarArticulo = function (){
-            var resultado = arrayArticulos.find(elemento => elemento.marca == marca)
-            if (resultado) {
-                resultado.cantidad = 0;
-            }
-        }
-
-        this.reemplazarArticulo = function (){
-
+        this.enviarJson = function (){
             var arrayJson = JSON.stringify(arrayArticulos);
             localStorage.setItem('productos', arrayJson);
-            // localStorage.getItem(arrayArticulos);
-            // let productosLS = localStorage.getItem('productos');
-            // let productosJson = JSON.parse(productosLS)
-            // console.log(productosJson)
-
-            const subtotal = Number(this.valor) * Number(this.cantidad);
-
-            const nuevoItem = document.createElement('div');
-            nuevoItem.setAttribute('id', 'nuevoItem');
-            const nuevoProducto = document.createElement('p');
-            const nuevoValor = document.createElement('p');
-            const nuevoCantidad = document.createElement('p');
-            const textoSubtotal = document.createElement('p');
-            const subtotalProducto = document.createElement('span');
-            const nuevoQuitar = document.createElement('p');
-        
-            const elementoProducto = document.createTextNode(`Producto: ${this.marca} `);
-            const elementoValor = document.createTextNode(`Valor: $${this.valor}`);
-            const elementoCantidad = document.createTextNode(`Cantidad: ${this.cantidad} `);
-            const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
-            const elementoSubtotal = document.createTextNode(subtotal);
-            const elementoQuitar = document.createTextNode('Quitar producto');
-        
-                nuevoItem.appendChild(nuevoProducto);
-                nuevoProducto.setAttribute('id', 'nuevoProducto');
-                nuevoProducto.appendChild(elementoProducto);
-        
-                nuevoItem.appendChild(nuevoValor);
-                nuevoValor.setAttribute('id', 'nuevoValor');
-                nuevoValor.appendChild(elementoValor);
-        
-                nuevoItem.appendChild(nuevoCantidad);
-                nuevoCantidad.setAttribute('id', 'nuevoCantidad');
-                nuevoCantidad.appendChild(elementoCantidad);
-        
-                nuevoItem.appendChild(textoSubtotal);
-                textoSubtotal.setAttribute('id', 'nuevoSubtotal');
-                textoSubtotal.appendChild(elementoTextoSubtotal);
-        
-                textoSubtotal.appendChild(subtotalProducto);
-                subtotalProducto.setAttribute('name', 'subtotalProducto');
-                subtotalProducto.appendChild(elementoSubtotal);
-        
-                nuevoItem.appendChild(nuevoQuitar);
-                nuevoQuitar.setAttribute('onclick', 'eliminarArticulo(this);');
-                nuevoQuitar.setAttribute('class', 'quitarProducto');
-                nuevoQuitar.appendChild(elementoQuitar);
-        
-            carrito.appendChild(nuevoItem)
-
-            carrito.innerHTML = `  
-            <div id="nuevoItem">
-                <p id="nuevoProducto">Producto: ${this.marca} </p>
-                <p id="nuevoValor">Valor: ${this.valor} </p>
-                <p id="nuevoCantidad">Cantidad: ${this.cantidad}  </p>
-                <p id="nuevoSubtotal">Subtotal: $<span name="subtotalProducto">${subtotal}</span></p>
-                <p onclick="eliminarArticulo(this)" class="quitarProducto">Quitar producto</p>
-            </div>`
-            
-        calcularTotal();
-
-        }
-
-        this.crearArticulo = function (){
-
-            var arrayJson = JSON.stringify(arrayArticulos);
-            localStorage.setItem('productos', arrayJson);
-            // localStorage.getItem(arrayArticulos);
-            // let productosLS = localStorage.getItem('productos');
-            // let productosJson = JSON.parse(productosLS)
-            // console.log(productosJson)
-
-            const subtotal = Number(this.valor) * Number(this.cantidad);
-
-            const nuevoItem = document.createElement('div');
-            nuevoItem.setAttribute('id', 'nuevoItem');
-            const nuevoProducto = document.createElement('p');
-            const nuevoValor = document.createElement('p');
-            const nuevoCantidad = document.createElement('p');
-            const textoSubtotal = document.createElement('p');
-            const subtotalProducto = document.createElement('span');
-            const nuevoQuitar = document.createElement('p');
-        
-            const elementoProducto = document.createTextNode(`Producto: ${this.marca} `);
-            const elementoValor = document.createTextNode(`Valor: $${this.valor}`);
-            const elementoCantidad = document.createTextNode(`Cantidad: ${this.cantidad} `);
-            const elementoTextoSubtotal = document.createTextNode('Subtotal: $');
-            const elementoSubtotal = document.createTextNode(subtotal);
-            const elementoQuitar = document.createTextNode('Quitar producto');
-        
-                nuevoItem.appendChild(nuevoProducto);
-                nuevoProducto.setAttribute('id', 'nuevoProducto');
-                nuevoProducto.appendChild(elementoProducto);
-        
-                nuevoItem.appendChild(nuevoValor);
-                nuevoValor.setAttribute('id', 'nuevoValor');
-                nuevoValor.appendChild(elementoValor);
-        
-                nuevoItem.appendChild(nuevoCantidad);
-                nuevoCantidad.setAttribute('id', 'nuevoCantidad');
-                nuevoCantidad.appendChild(elementoCantidad);
-        
-                nuevoItem.appendChild(textoSubtotal);
-                textoSubtotal.setAttribute('id', 'nuevoSubtotal');
-                textoSubtotal.appendChild(elementoTextoSubtotal);
-        
-                textoSubtotal.appendChild(subtotalProducto);
-                subtotalProducto.setAttribute('name', 'subtotalProducto');
-                subtotalProducto.appendChild(elementoSubtotal);
-        
-                nuevoItem.appendChild(nuevoQuitar);
-                nuevoQuitar.setAttribute('onclick', 'eliminarArticulo(this);');
-                nuevoQuitar.setAttribute('class', 'quitarProducto');
-                nuevoQuitar.appendChild(elementoQuitar);
-        
-            carrito.appendChild(nuevoItem)
-            
-        calcularTotal();
-
         }
     }
 }
@@ -199,6 +73,29 @@ function eliminarArticulo(articulo){
 
     articulo.parentElement.remove();
     calcularTotal();
-    // localStorage.clear()
+    localStorage.clear()
 
 }
+
+localStorage.getItem(arrayArticulos);
+let productosLS = localStorage.getItem('productos');
+let productosJson = JSON.parse(productosLS)
+
+const listaJson = document.getElementById("listado"); 
+function agregarElementos(){ 
+    
+    productosJson.forEach (function (dataJson) {
+    const subtotal = Number(dataJson.valor) * Number(dataJson.cantidad);
+    var item = document.createElement("div");    
+    item.innerHTML = `  
+        <div id="nuevoItem">
+            <p id="nuevoProducto">Producto: ${dataJson.marca} </p>
+            <p id="nuevoValor">Valor: ${dataJson.valor} </p>
+            <p id="nuevoCantidad">Cantidad: ${dataJson.cantidad}  </p>
+            <p id="nuevoSubtotal">Subtotal: $<span name="subtotalProducto">${subtotal}</span></p>
+        </div>`;
+        listaJson.appendChild(item);
+        })
+        calcularTotal()
+}
+agregarElementos()
