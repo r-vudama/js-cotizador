@@ -1,66 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script defer src="main.js"></script>
-    <title>Cotizador</title>
+    <title>Epiphone Argentina</title>
 </head>
 <body>
-    <h1>Tienda de música</h1>
 
-    <div class="articulos">
-        <div class="articulos__item" name="articulos">
-            <img src="img/epiphone_les_paul.jpg" alt="" width="300">
-            <p value="LES_PAUL" id="articulo_producto">Epiphone Les Paul</p>
-            <p>$<span id="articulo_valor">82134</span></p>
-            <!-- <label for="">Cantidad:</label>
-            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1"> -->
-            <button type="button" name="button" class="boton" >Agregar producto</button>
-        </div>
+  <nav class="menu">
+    <div class="contenedor-img"><a href="index.html"><img src="img/logo.png" alt=""></a></div>
+    <ul>
+     <a href="#" id="electricas"><li>Guitarras Eléctricas</li></a> 
+      <a href="#" id="acusticas"><li>Guitarras Acústicas</li></a>
+      <a href="#" id="bajos"><li>Bajos</li></a>
+    </ul>
+  </nav>
+    <h1>Epiphone - Descubí tu estulo</h1>
+    <div id="contenedorInstrumentos" class="contenedorInstrumentos"></div>
 
-        <div class="articulos__item" name="articulos">
-            <img src="img/epiphone_sg.png" alt="" width="300">
-            <p value="LES_PAUL" id="articulo_producto">Epiphone SG</p>
-            <p>$<span id="articulo_valor">67137</span></p>
-            <!-- <label for="">Cantidad:</label>
-            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1"> -->
-            <button type="button" name="button" class="boton" >Agregar producto</button>
-        </div>
-
-        <div class="articulos__item" name="articulos">
-            <img src="img/squier_jazz.jpg" alt="" width="300">
-            <p value="LES_PAUL" id="articulo_producto">Squier Jazz Bass</p>
-            <p>$<span id="articulo_valor">69088</span></p>
-            <!-- <label for="">Cantidad:</label>
-            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1"> -->
-            <button type="button" name="button" class="boton" >Agregar producto</button>
-        </div>
-
-        <div class="articulos__item" name="articulos">
-            <img src="img/squier_precision.jpg" alt="" width="300">
-            <p value="LES_PAUL" id="articulo_producto">Squier CV Precision</p>
-            <p>$<span id="articulo_valor">82932</span></p>
-            <!-- <label for="">Cantidad:</label>
-            <input type="number" name="articulo_cantidad" id="articulo_cantidad" value="1"> -->
-            <button type="button" name="button" class="boton" >Agregar producto</button>
-        </div>
-
+    <div class="contenedorCarrito">
+      <div id="contenedor_carrito" class="carrito"></div>
+      <div id="contenedor_total" class="total"></div>
     </div>
 
-    <div class="contenedor__form-y-total">
 
-        <div id="carritoTotal" class="carritoTotal"><p id="total">Total: $ 0</p></div>
-
-    </div>
-
-    <div id="carrito" class="carrito"></div>
-
-
-    <div id="listado">
-        <button onclick="eliminarArticulo(this)" class="quitarProducto">Vaciar carrito</button>
-    </div>
-    
+    <script src="productos.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

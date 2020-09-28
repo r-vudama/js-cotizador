@@ -1,101 +1,102 @@
-let arrayArticulos = [];
-const carrito = document.querySelector('.carrito')
+let carrito;
+if (localStorage.carrito) {carrito = JSON.parse(localStorage.carrito);}
+else {carrito = [];}
 
-class Articulo {
-    constructor(marca, valor, cantidad) {
-        this.marca = marca;
-        this.valor = valor;
-        this.cantidad = cantidad;
+const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos');
+const contenedorCarrito = document.querySelector('#contenedor_carrito');
+const contenedorTotal = document.querySelector('#contenedor_total');
 
-        this.agregarArticulo = function (){
+function crearInstrumento() {
+    instrumentos.forEach((producto) => {
 
-            const existe = arrayArticulos.some(producto => producto.marca === marca);
-            if (existe) {
-                arrayArticulos.map(producto => {
-                    if (producto.marca === marca) {
-                        producto.cantidad++;            
-                        return producto;
-                    } else {
-                        return producto;
-                    }
-                });
-                this.enviarJson()
-                calcularTotal();
-                arrayArticulos = [...arrayArticulos];
-            } else {
-                arrayArticulos = [...arrayArticulos, this]
-                this.enviarJson()  
-                calcularTotal(); 
-            }
-        }
-
-        this.enviarJson = function (){
-            var arrayJson = JSON.stringify(arrayArticulos);
-            localStorage.setItem('productos', arrayJson);
-        }
-    }
-}
-
-const epiphoneLesPaul = new Articulo('Epiphone Les Paul', 82134, 1);
-const epiphoneSG = new Articulo('Epiphone SG', 67137, 1);
-const squierJazz = new Articulo('Squier Jazz Bass', 69088, 1);
-const squierPrecision = new Articulo('Squier CV Precision', 82932, 1);
-
-const botones = document.querySelectorAll(".boton");
-for (let i = 0 ; i < botones.length ; i++) {
-
-    botones[i].addEventListener("click", function(){
+            const instrumento = document.createElement('div');
+            instrumento.className = 'instrumento ';
+            instrumento.innerHTML = `<img src=${producto.img}>
+            <h2>${producto.producto}</h2>
+            <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
+            <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
         
-        if(botones[i] == botones[0]){
-            epiphoneLesPaul.agregarArticulo();
-        } else if (botones[i] == botones[1]){
-            epiphoneSG.agregarArticulo();
-        } else if (botones[i] == botones[2]){
-            squierJazz.agregarArticulo();
-        } else if (botones[i] == botones[3]){
-            squierPrecision.agregarArticulo();
-        }
-    })
-}
-
-function calcularTotal(){
-
-    let subtotales = document.getElementsByName('subtotalProducto');
-    let suma = 0;
-    for (i = 0; i < subtotales.length; i++) {
-        suma = suma + Number(subtotales[i].innerText);
+            contenedorInstrumentos.appendChild(instrumento);
+    });
+  }
+  
+function cambiarCantidad(e) {
+    if (e.target.value == 0) {
+        carrito.splice(e.target.name, 1);
+    } else {
+        carrito[e.target.name].cantidad = e.target.value;
     }
-    let total = document.getElementById('total');
-    total.innerHTML = `Total: $${suma}`;
+    cargarCarrito();
+    localStorage.carrito = JSON.stringify(carrito);
 }
 
-function eliminarArticulo(articulo){
-
-    articulo.parentElement.remove();
-    calcularTotal();
-    localStorage.clear()
-
+function agregarInstrumento(index) {
+    var producto = instrumentos[index];
+    if (carrito.length > 0) {
+        let noExiste = true;
+        for (var i = 0; i < carrito.length; i++) {
+        if (producto.producto === carrito[i].producto) {
+            carrito[i].cantidad++;
+            noExiste = false;
+        }
+        }
+        if (noExiste) {
+        producto.cantidad = 1;
+        carrito.push(producto);
+        }
+    } else {
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+    cargarCarrito();
+    localStorage.carrito = JSON.stringify(carrito);
 }
 
-localStorage.getItem(arrayArticulos);
-let productosLS = localStorage.getItem('productos');
-let productosJson = JSON.parse(productosLS)
+function cargarCarrito() {
+    contenedorCarrito.innerHTML = '';
+    contenedorTotal.innerHTML = '';
 
-const listaJson = document.getElementById("listado"); 
-function agregarElementos(){ 
-    
-    productosJson.forEach (function (dataJson) {
-    const subtotal = Number(dataJson.valor) * Number(dataJson.cantidad);
-    var item = document.createElement("div");    
-    item.innerHTML = `  
-        <div id="nuevoItem">
-            <p id="nuevoProducto">Producto: ${dataJson.marca} </p>
-            <p id="nuevoValor">Valor: ${dataJson.valor} </p>
-            <p id="nuevoCantidad">Cantidad: ${dataJson.cantidad}  </p>
-            <p id="nuevoSubtotal">Subtotal: $<span name="subtotalProducto">${subtotal}</span></p>
-        </div>`;
-        listaJson.appendChild(item);
-        })
-        calcularTotal()
+    if (carrito.length > 0) {
+        let contador = 0;
+        carrito.forEach((producto) => {
+        let productosEnCarrito = document.createElement('div');
+        productosEnCarrito.className = 'item'
+        productosEnCarrito.innerHTML = `
+        <p>Producto: ${producto.producto} <br> 
+        Cantidad: ${producto.cantidad} <br> 
+        Subtotal: $${new Intl.NumberFormat('es-ar').format(producto.valor * producto.cantidad)}</p>
+        <div class='botonesItem'>    
+        <button onclick='quitarItem(${carrito.indexOf(producto)})'> - </button>
+        <input name='${carrito.indexOf(producto)}' value='${producto.cantidad}' disabled onchange='cambiarCantidad(event)'> 
+        <button onclick='agregarItem(${carrito.indexOf(producto)})'> + </button>
+        <div>`;
+        contenedorCarrito.appendChild(productosEnCarrito);
+        contador = contador + producto.valor * producto.cantidad;
+        });
+
+        let totalCarrito = document.createElement('h2');
+        totalCarrito.innerHTML = `Total: $${new Intl.NumberFormat('es-ar').format(contador)}`;
+        contenedorTotal.innerHTML = `<a href="compra.html" class="botonComprar">Comprar</a>`
+        
+        contenedorTotal.appendChild(totalCarrito);
+    }
 }
-agregarElementos()
+  
+function quitarItem(index) {
+    carrito[index].cantidad = carrito[index].cantidad - 1;
+    if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+    }
+    localStorage.carrito = JSON.stringify(carrito);
+    cargarCarrito();
+}
+
+function agregarItem(index) {
+    carrito[index].cantidad = carrito[index].cantidad + 1;
+    localStorage.carrito = JSON.stringify(carrito);
+    cargarCarrito();
+}
+
+crearInstrumento();
+cargarCarrito();
+  

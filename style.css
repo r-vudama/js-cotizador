@@ -1,152 +1,254 @@
 *{
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body{
-    width: 90%;
+    width: 100%;
     margin: auto;
-    font-family: monospace;
+    font-family: "Oswald", sans-serif;
+    background: #f2f2f2;
 }
 
-button, 
-a,
-input{
-    outline: none;
+.menu{
+    width: 100%;
+    height: 90px;
+    background: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+}
+
+.menu .contenedor-img{
+    width: 100px;
+}
+
+.menu .contenedor-img img{
+    width: 100px;
+    margin-left: 30px;
+}
+
+.menu ul{
+    list-style: none;
+}
+
+.menu ul a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 15px;
+    color: rgba(0,0,0,.5);
 }
 
 h1{
+    margin: 25px 0;
+    font-size: 40px;
+    font-weight: 300;
     text-align: center;
-    margin: 30px auto
-} 
-
-.articulos{
-    margin: auto;
-    width: 70%;
-    display: flex;
-    justify-content: center;
 }
 
-.articulos__item{
-    margin: 25px;
-    width: 300px;
-    height: 430px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border: 1px solid rgb(105, 105, 105);
-    border-radius: 10px;
+h2{
+    text-align: center;
+    font-weight: lighter;
 }
 
-.articulos__item img{
-    width: 230px;
-}
-
-.articulos__item p,
-.articulos__item input,
-.articulos__item label,
-.articulos__item button{
-    font-size: 16px;
-    font-weight: bold;
-    margin: 3px 0;
-}
-
-.articulos__item input{
-    width: 50px;
-}
-
-.articulos__item button{
-    padding: 10px 20px;
-}
-
-.carrito{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.articulos button{
-    background: rgb(1, 151, 1);
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    transition: .3s all ease;
-}
-
-.articulos button:hover{
-    background: rgb(0, 88, 0);
-}
-
-.carritoTotal{
-    width: 100%;
-}
-
-#nuevoItem{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 280px;
-    height: 200px;
-    background: rgb(211, 211, 211);
-    margin: 5px;
-    border-radius: 3px;
-    transition: .3s all ease;
-}
-
-#nuevoItem:hover{
-    background: rgb(167, 167, 167);
-}
-
-#nuevoItem p{
-    font-size: 17px;
-    font-weight: bold;
-    padding: 3px 0;
-}
-
-.quitarProducto{
-    font-weight: bold;
-    color: rgb(0, 0, 63);
-    cursor: pointer;
-    transition: .3s all ease;
-}
-
-.quitarProducto:hover{
-    color: #fff;
-}
-
-.carritoTotal{
+.contenedorInstrumentos{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+}
+
+.instrumento{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.instrumento img, 
+.instrumento h2,
+.instrumento button,
+.instrumento p{
+    margin: 8px 0 5px 0;
+}
+
+.instrumento img{
+    width: 270px;
+}
+
+.instrumento button{
+    width: 200px;
+    height: 50px;
+    background: #1a7fb3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    transition: .3s all ease;
+    font-family: "Oswald", sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.instrumento button:hover{
+    background: #005783;
+}
+
+.carrito{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 280px;
+    height: 150px;
+    background:#f2f2f2;
+    margin: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.item input{
+    width: 30px;
+    height: 30px;
+    margin: 10px 0;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.item button{
+    border: none;
+    background-color: #1a7fb3;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s all ease;
+}
+
+.item button:hover{
+    background-color: #005783;
+}
+
+.botonesItem{
+    width: 100%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.carritoTotal p{
-    font-size: 28px;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-#listado{
-    margin: auto;
+.total{
     width: 70%;
+    margin: auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-}
-
-#listado div{
     justify-content: center;
-
+    align-items: center;
+    flex-direction: row-reverse;
+    font-size: 25px;
+    font-weight: bold;
 }
 
-#listado button{
+.total h2{
+    padding: 15px 0;
+}
+
+.contenedorCarrito{
     width: 100%;
+    background: #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botonComprar,
+.boton{
+    display: inline-block;
+    padding: 15px;
+    margin: 0 20px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 16px;
+    width: 200px;
+    height: 50px;
+    background: #1a7fb3;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    transition: .3s all ease;
+    font-family: "Oswald", sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.botonComprar:hover,
+.boton:hover{
+    background: #005783;
+}
+
+
+/* ----------------------- compra  */
+.contenedor{
+    width: 100%;
+    height: 100vh;
+    background: #f2f2f2;
+}
+.contenedor__compra{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor__listado{
+    width: 70%;
+}
+
+.nuevaLista{
+    width: 100%;
+    height: 100px;
+    margin: 15px 0;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.nuevaLista img{
+    margin-right: 300px;
+}
+
+#nuevoItem p{
+    font-size: 15px;
+}
+
+.contenedor__linea{
+    width: 1px;
+    margin: 15px 0 15px 15px; 
+    height: 150px;
+    background: #000;
+}
+
+.contenedor__botones{
+    width: 30%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
