@@ -6,14 +6,26 @@ const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos')
 const contenedorCarrito = document.querySelector('#contenedor_carrito');
 const contenedorTotal = document.querySelector('#contenedor_total');
 
-let bajos = document.querySelector('#bajo');
-let electricas = document.querySelector('#electrica');
-let acustica = document.querySelector('#acustica');
+let botonesMenu = document.querySelectorAll(".botonMenu");
 
-bajos.addEventListener('click', function(e){
+for (let i = 0 ; i < botonesMenu.length ; i++) {
 
+    botonesMenu[i].addEventListener("click", function(){
+
+        id = botonesMenu[i].id
+        if(botonesMenu[i] == botonesMenu[0]){
+            filtrarInstrumento();
+        } else if (botonesMenu[i] == botonesMenu[1]){
+            filtrarInstrumento();
+        } else if (botonesMenu[i] == botonesMenu[2]){
+            filtrarInstrumento();
+        } 
+    })
+}
+
+function filtrarInstrumento(){
     contenedorInstrumentos.innerHTML = '';
-    instrumentos.filter(elem => elem.tipo == 'bajo').forEach((producto) => {
+    instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
         const instrumento = document.createElement('div');
         instrumento.className = 'instrumento ';
         instrumento.innerHTML = `<img src=${producto.img}>
@@ -23,41 +35,10 @@ bajos.addEventListener('click', function(e){
     
         contenedorInstrumentos.appendChild(instrumento);
     });
-})
-
-electricas.addEventListener('click', function(){
-
-    contenedorInstrumentos.innerHTML = '';
-    instrumentos.filter(elem => elem.tipo == 'electrica').forEach((producto) => {
-        const instrumento = document.createElement('div');
-        instrumento.className = 'instrumento ';
-        instrumento.innerHTML = `<img src=${producto.img}>
-        <h2>${producto.producto}</h2>
-        <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
-        <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
-    
-        contenedorInstrumentos.appendChild(instrumento);
-    });
-})
-
-acustica.addEventListener('click', function(){
-
-    contenedorInstrumentos.innerHTML = '';
-    instrumentos.filter(elem => elem.tipo == 'acustica').forEach((producto) => {
-        const instrumento = document.createElement('div');
-        instrumento.className = 'instrumento ';
-        instrumento.innerHTML = `<img src=${producto.img}>
-        <h2>${producto.producto}</h2>
-        <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
-        <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
-    
-        contenedorInstrumentos.appendChild(instrumento);
-    });
-})
+}
 
 function crearInstrumento() {
     instrumentos.forEach((producto) => {
-
             const instrumento = document.createElement('div');
             instrumento.className = 'instrumento ';
             instrumento.innerHTML = `<img src=${producto.img}>
@@ -148,4 +129,3 @@ function agregarItem(index) {
 
 crearInstrumento();
 cargarCarrito();
-  
