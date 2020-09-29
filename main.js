@@ -10,7 +10,7 @@ let bajos = document.querySelector('#bajo');
 let electricas = document.querySelector('#electrica');
 let acustica = document.querySelector('#acustica');
 
-bajos.addEventListener('click', function(){
+bajos.addEventListener('click', function(e){
 
     contenedorInstrumentos.innerHTML = '';
     instrumentos.filter(elem => elem.tipo == 'bajo').forEach((producto) => {

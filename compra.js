@@ -22,3 +22,9 @@ function agregarElementos(){
 }
 
 agregarElementos()
+
+const vaciarCarrito = document.querySelector('#botonVaciar');
+vaciarCarrito.addEventListener('click', function(){
+    listaJson.innerHTML = '';
+    localStorage.clear()
+})
