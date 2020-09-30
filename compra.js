@@ -8,7 +8,6 @@ function agregarElementos(){
     const subtotal = Number(dataJson.valor) * Number(dataJson.cantidad);
     var item = document.createElement("div");    
     item.innerHTML = `  
-
     <div class="nuevaLista"><img src="${dataJson.img}" alt="" width="150">
         <div id="nuevoItem">
             <p>${dataJson.producto} </p>

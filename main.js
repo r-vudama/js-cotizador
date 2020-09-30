@@ -11,15 +11,8 @@ let botonesMenu = document.querySelectorAll(".botonMenu");
 for (let i = 0 ; i < botonesMenu.length ; i++) {
 
     botonesMenu[i].addEventListener("click", function(){
-
         id = botonesMenu[i].id
-        if(botonesMenu[i] == botonesMenu[0]){
-            filtrarInstrumento();
-        } else if (botonesMenu[i] == botonesMenu[1]){
-            filtrarInstrumento();
-        } else if (botonesMenu[i] == botonesMenu[2]){
-            filtrarInstrumento();
-        } 
+        filtrarInstrumento()
     })
 }
 
