@@ -11,18 +11,34 @@ body{
     background: #f2f2f2;
 }
 
+.ir-arriba{
+    display: none;
+    background: none;
+    font-size: 20px;
+    color: #1a7fb3;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.ir-arriba i{
+    font-size: 45px;
+}
+
 .menu{
     width: 100%;
     height: 90px;
     background: #fff;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
 }
 
 .menu .contenedor-img{
     width: 100px;
+    margin-left: 30px;
 }
 
 .menu .contenedor-img img{
@@ -32,6 +48,7 @@ body{
 
 .menu ul{
     list-style: none;
+    margin-right: 30px;
 }
 
 .menu ul a{
