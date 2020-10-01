@@ -6,15 +6,12 @@ const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos')
 const contenedorCarrito = document.querySelector('#contenedor_carrito');
 const contenedorTotal = document.querySelector('#contenedor_total');
 
-let botonesMenu = document.querySelectorAll(".botonMenu");
-
-for (let i = 0 ; i < botonesMenu.length ; i++) {
-
-    botonesMenu[i].addEventListener("click", function(){
-        id = botonesMenu[i].id
-        filtrarInstrumento()
+let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
+    boton.addEventListener('click', function() {
+        id = boton.id;
+        filtrarInstrumento();
     })
-}
+  })
 
 function filtrarInstrumento(){
     contenedorInstrumentos.innerHTML = '';
