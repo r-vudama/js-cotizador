@@ -17,7 +17,7 @@ function filtrarInstrumento(){
     contenedorInstrumentos.innerHTML = '';
     instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
         const instrumento = document.createElement('div');
-        instrumento.className = 'instrumento ';
+        instrumento.setAttribute('class', 'instrumento');
         instrumento.innerHTML = `<img src=${producto.img}>
         <h2>${producto.producto}</h2>
         <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
@@ -27,10 +27,10 @@ function filtrarInstrumento(){
     });
 }
 
-function crearInstrumento() {
+function mostrarTodo() {
     instrumentos.forEach((producto) => {
             const instrumento = document.createElement('div');
-            instrumento.className = 'instrumento ';
+            instrumento.setAttribute('class', 'instrumento');
             instrumento.innerHTML = `<img src=${producto.img}>
             <h2>${producto.producto}</h2>
             <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
@@ -41,11 +41,8 @@ function crearInstrumento() {
 }
   
 function cambiarCantidad(e) {
-    if (e.target.value == 0) {
-        carrito.splice(e.target.name, 1);
-    } else {
-        carrito[e.target.name].cantidad = e.target.value;
-    }
+    if (e.target.value == 0) {carrito.splice(e.target.name, 1);}
+    else {carrito[e.target.name].cantidad = e.target.value;}
     cargarCarrito();
     localStorage.carrito = JSON.stringify(carrito);
 }
@@ -55,10 +52,10 @@ function agregarInstrumento(index) {
     if (carrito.length > 0) {
         let noExiste = true;
         for (var i = 0; i < carrito.length; i++) {
-        if (producto.producto === carrito[i].producto) {
-            carrito[i].cantidad++;
-            noExiste = false;
-        }
+            if (producto.producto === carrito[i].producto) {
+                carrito[i].cantidad++;
+                noExiste = false;
+            }
         }
         if (noExiste) {
         producto.cantidad = 1;
@@ -80,7 +77,7 @@ function cargarCarrito() {
         let contador = 0;
         carrito.forEach((producto) => {
         let productosEnCarrito = document.createElement('div');
-        productosEnCarrito.className = 'item'
+        productosEnCarrito.setAttribute('class', 'item');
         productosEnCarrito.innerHTML = `
         <p>Producto: ${producto.producto} <br> 
         Cantidad: ${producto.cantidad} <br> 
@@ -117,5 +114,5 @@ function agregarItem(index) {
     cargarCarrito();
 }
 
-crearInstrumento();
+mostrarTodo();
 cargarCarrito();
