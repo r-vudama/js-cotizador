@@ -58,6 +58,25 @@ body{
     color: rgba(0,0,0,.5);
 }
 
+.iconoCarrito i{
+    font-size: 25px;
+    color: rgba(0,0,0,.5);
+    margin-right: 50px;
+    cursor: pointer;
+    position: relative;
+}
+
+.avisoCarrito{
+    background: red;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    display: none;
+}
+
 h1{
     margin: 25px 0;
     font-size: 40px;

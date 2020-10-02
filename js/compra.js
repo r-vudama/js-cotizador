@@ -24,6 +24,6 @@ agregarElementos()
 
 const vaciarCarrito = document.querySelector('#botonVaciar');
 vaciarCarrito.addEventListener('click', function(){
-    listaJson.innerHTML = '<h3 class="vacio">Carrito Vacío</h3><a href="index.html" class="vacioBack">Volver al shop</a> ';
+    listaJson.innerHTML = '<h3 class="vacio">Carrito Vacío</h3><a href="index.html" class="vacioBack">Volver al shop</a>';
     localStorage.clear()
 })
