@@ -20,7 +20,7 @@ function filtrarInstrumento(){
     instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
         const instrumento = document.createElement('div');
         instrumento.setAttribute('class', 'instrumento');
-        instrumento.innerHTML = `<img src=${producto.img}>
+        instrumento.innerHTML = `<img src=${producto.img} class="img-galeria">
         <h2>${producto.producto}</h2>
         <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
         <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
@@ -33,7 +33,7 @@ function mostrarTodo() {
     instrumentos.forEach((producto) => {
             const instrumento = document.createElement('div');
             instrumento.setAttribute('class', 'instrumento');
-            instrumento.innerHTML = `<img src=${producto.img}>
+            instrumento.innerHTML = `<img src=${producto.img} class="img-galeria">
             <h2>${producto.producto}</h2>
             <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
             <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
