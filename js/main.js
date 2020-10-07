@@ -16,6 +16,7 @@ let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
   })
 
 function filtrarInstrumento(){
+    const imagenes = document.querySelectorAll('.img-galeria');
     contenedorInstrumentos.innerHTML = '';
     instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
         const instrumento = document.createElement('div');
@@ -26,6 +27,14 @@ function filtrarInstrumento(){
         <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
     
         contenedorInstrumentos.appendChild(instrumento);
+
+        // ver aca 
+        const imagenes = document.querySelectorAll('.img-galeria');
+        imagenes.forEach(imagen =>{
+            imagen.addEventListener('click', () =>{
+                aparecerImagen(imagen.getAttribute('src'));
+            });
+        });
     });
 }
 
@@ -124,3 +133,4 @@ function agregarItem(index) {
 
 mostrarTodo();
 cargarCarrito();
+
