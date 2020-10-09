@@ -8,6 +8,28 @@ const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos')
 const contenedorCarrito = document.querySelector('#contenedor_carrito');
 const contenedorTotal = document.querySelector('#contenedor_total');
 
+let instrumentos = [];
+
+$.ajax({
+    url: 'productos.json',
+    success: function (data) {
+        data.forEach((instrumento) => {
+            instrumentos.push(instrumento)
+        });
+
+    mostrarTodo();
+    const imagenes = document.querySelectorAll('.img-galeria');
+    imagenes.forEach(imagen =>{
+        imagen.addEventListener('click', () =>{
+            aparecerImagen(imagen.getAttribute('src'));
+        });
+    });
+    },
+    error: function () {
+        console.log("Error");
+    }
+});
+
 let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
     boton.addEventListener('click', function() {
         id = boton.id;
@@ -18,14 +40,14 @@ let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
 function filtrarInstrumento(){
     contenedorInstrumentos.innerHTML = '';
     instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
-        const instrumento = document.createElement('div');
-        instrumento.setAttribute('class', 'instrumento');
-        instrumento.innerHTML = `<img src=${producto.img} class="img-galeria">
+        const instrumentoDiv = document.createElement('div');
+        instrumentoDiv.setAttribute('class', 'instrumento');
+        instrumentoDiv.innerHTML = `<img src=${producto.img} class="img-galeria">
         <h2>${producto.producto}</h2>
         <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
         <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
     
-        contenedorInstrumentos.appendChild(instrumento);
+        contenedorInstrumentos.appendChild(instrumentoDiv);
     });
 
     const imagenes = document.querySelectorAll('.img-galeria');
@@ -37,17 +59,19 @@ function filtrarInstrumento(){
 }
 
 function mostrarTodo() {
+    
     instrumentos.forEach((producto) => {
-            const instrumento = document.createElement('div');
-            instrumento.setAttribute('class', 'instrumento');
-            instrumento.innerHTML = `<img src=${producto.img} class="img-galeria">
-            <h2>${producto.producto}</h2>
-            <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
-            <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
-        
-            contenedorInstrumentos.appendChild(instrumento);
+        const instrumentoDiv = document.createElement('div');
+        instrumentoDiv.setAttribute('class', 'instrumento');
+        instrumentoDiv.innerHTML = `<img src=${producto.img} class="img-galeria">
+        <h2>${producto.producto}</h2>
+        <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
+        <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
+    
+        contenedorInstrumentos.appendChild(instrumentoDiv);
     });
 }
+
   
 function cambiarCantidad(e) {
     if (e.target.value == 0) {carrito.splice(e.target.name, 1);}
@@ -129,6 +153,12 @@ function agregarItem(index) {
     cargarCarrito();
 }
 
-mostrarTodo();
+
 cargarCarrito();
+
+
+
+
+
+
 
