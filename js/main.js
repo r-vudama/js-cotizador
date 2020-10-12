@@ -2,7 +2,7 @@ let carrito;
 if (localStorage.carrito) {carrito = JSON.parse(localStorage.carrito);}
 else {carrito = [];}
 
-const iconoCarrito = document.querySelector('.iconoCarrito')
+const iconoCarrito = document.querySelector('.iconoCarrito');
 const avisoCarrito = document.querySelector('.avisoCarrito');
 const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos');
 const contenedorCarrito = document.querySelector('#contenedor_carrito');
@@ -18,12 +18,7 @@ $.ajax({
         });
 
     mostrarTodo();
-    const imagenes = document.querySelectorAll('.img-galeria');
-    imagenes.forEach(imagen =>{
-        imagen.addEventListener('click', () =>{
-            aparecerImagen(imagen.getAttribute('src'));
-        });
-    });
+    agrandarImagen();
     },
     error: function () {
         console.log("Error");
@@ -35,33 +30,24 @@ let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
         id = boton.id;
         filtrarInstrumento();
     })
-  })
+  });
 
 function filtrarInstrumento(){
     contenedorInstrumentos.innerHTML = '';
     instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
-        const instrumentoDiv = document.createElement('div');
-        instrumentoDiv.setAttribute('class', 'instrumento');
-        instrumentoDiv.innerHTML = `<img src=${producto.img} class="img-galeria">
-        <h2>${producto.producto}</h2>
-        <h2>$${new Intl.NumberFormat('es-ar').format(producto.valor)}</h2>
-        <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
-    
-        contenedorInstrumentos.appendChild(instrumentoDiv);
+        crearCard(producto);
     });
-
-    const imagenes = document.querySelectorAll('.img-galeria');
-    imagenes.forEach(imagen =>{
-        imagen.addEventListener('click', () =>{
-            aparecerImagen(imagen.getAttribute('src'));
-        });
-    });
-}
+    agrandarImagen();
+};
 
 function mostrarTodo() {
-    
     instrumentos.forEach((producto) => {
-        const instrumentoDiv = document.createElement('div');
+        crearCard(producto);
+    });
+};
+
+function crearCard(producto){
+    const instrumentoDiv = document.createElement('div');
         instrumentoDiv.setAttribute('class', 'instrumento');
         instrumentoDiv.innerHTML = `<img src=${producto.img} class="img-galeria">
         <h2>${producto.producto}</h2>
@@ -69,16 +55,14 @@ function mostrarTodo() {
         <button onclick='agregarInstrumento(${instrumentos.indexOf(producto)})'>Agregar al carrito</button>`;
     
         contenedorInstrumentos.appendChild(instrumentoDiv);
-    });
-}
-
+};
   
 function cambiarCantidad(e) {
     if (e.target.value == 0) {carrito.splice(e.target.name, 1);}
     else {carrito[e.target.name].cantidad = e.target.value;}
     cargarCarrito();
     localStorage.carrito = JSON.stringify(carrito);
-}
+};
 
 function agregarInstrumento(index) {
     var producto = instrumentos[index];
@@ -100,7 +84,7 @@ function agregarInstrumento(index) {
     }
     cargarCarrito();
     localStorage.carrito = JSON.stringify(carrito);
-}
+};
 
 function cargarCarrito() {
     contenedorCarrito.innerHTML = '';
@@ -135,7 +119,7 @@ function cargarCarrito() {
         avisoCarrito.style.display = "none";
         iconoCarrito.setAttribute( "href", "#" );
     }
-}
+};
   
 function quitarItem(index) {
     carrito[index].cantidad = carrito[index].cantidad - 1;
@@ -145,14 +129,13 @@ function quitarItem(index) {
     }
     localStorage.carrito = JSON.stringify(carrito);
     cargarCarrito();
-}
+};
 
 function agregarItem(index) {
     carrito[index].cantidad = carrito[index].cantidad + 1;
     localStorage.carrito = JSON.stringify(carrito);
     cargarCarrito();
-}
-
+};
 
 cargarCarrito();
 

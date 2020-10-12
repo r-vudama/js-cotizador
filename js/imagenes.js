@@ -8,8 +8,17 @@ contenedorCapa.addEventListener('click', (e) => {
     };
 });
 
+function agrandarImagen(){
+    const imagenes = document.querySelectorAll('.img-galeria');
+    imagenes.forEach(imagen =>{
+        imagen.addEventListener('click', () =>{
+            aparecerImagen(imagen.getAttribute('src'));
+        });
+    });
+};
+
 function aparecerImagen(imagen){
     imagenesCapa.src = imagen;
     contenedorCapa.classList.toggle('mostrar');
     imagenesCapa.classList.toggle('mostarImg');
-}
+};

@@ -19,10 +19,10 @@ function agregarElementos(){
         </div>`;
         listaJson.appendChild(item);
         })
-    calcularTotal()
+    calcularTotal();
 }
 
-agregarElementos()
+agregarElementos();
 
 const vaciarCarrito = document.querySelector('#botonVaciar');
 vaciarCarrito.addEventListener('click', function(){
@@ -40,4 +40,4 @@ function calcularTotal(){
         suma = suma + Number(subtotal.innerText);
         total.innerHTML = `Total: $${new Intl.NumberFormat('es-ar').format(Number(suma))}`;
     });
-}
+};
