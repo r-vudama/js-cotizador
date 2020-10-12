@@ -1,0 +1,22 @@
+{
+  "name": "carrito",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r-vudama/js-cotizador.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r-vudama/js-cotizador/issues"
+  },
+  "homepage": "https://github.com/r-vudama/js-cotizador#readme",
+  "dependencies": {
+    "sass": "^1.27.0"
+  }
+}
