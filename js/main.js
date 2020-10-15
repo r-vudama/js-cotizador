@@ -83,6 +83,7 @@ function agregarInstrumento(index) {
         carrito.push(producto);
     }
     cargarCarrito();
+    avisarProductoCarrito()
     localStorage.carrito = JSON.stringify(carrito);
 };
 
@@ -95,19 +96,19 @@ function cargarCarrito() {
         iconoCarrito.setAttribute( "href", "compra.html" );
         let contador = 0;
         carrito.forEach((producto) => {
-        let productosEnCarrito = document.createElement('div');
-        productosEnCarrito.setAttribute('class', 'item');
-        productosEnCarrito.innerHTML = `
-        <p>Producto: ${producto.producto} <br> 
-        Cantidad: ${producto.cantidad} <br> 
-        Subtotal: $${new Intl.NumberFormat('es-ar').format(producto.valor * producto.cantidad)}</p>
-        <div class='botonesItem'>    
-        <button onclick='quitarItem(${carrito.indexOf(producto)})'> - </button>
-        <input name='${carrito.indexOf(producto)}' value='${producto.cantidad}' disabled onchange='cambiarCantidad(event)'> 
-        <button onclick='agregarItem(${carrito.indexOf(producto)})'> + </button>
-        <div>`;
-        contenedorCarrito.appendChild(productosEnCarrito);
-        contador = contador + producto.valor * producto.cantidad;
+            let productosEnCarrito = document.createElement('div');
+            productosEnCarrito.setAttribute('class', 'item');
+            productosEnCarrito.innerHTML = `
+                <p>Producto: ${producto.producto} <br> 
+                Cantidad: ${producto.cantidad} <br> 
+                Subtotal: $${new Intl.NumberFormat('es-ar').format(producto.valor * producto.cantidad)}</p>
+                <div class='botonesItem'>    
+                <button onclick='quitarItem(${carrito.indexOf(producto)})'> - </button>
+                <input name='${carrito.indexOf(producto)}' value='${producto.cantidad}' disabled onchange='cambiarCantidad(event)'> 
+                <button onclick='agregarItem(${carrito.indexOf(producto)})'> + </button>
+                <div>`;
+            contenedorCarrito.appendChild(productosEnCarrito);
+            contador = contador + producto.valor * producto.cantidad;
         });
 
         let totalCarrito = document.createElement('h2');
@@ -120,6 +121,13 @@ function cargarCarrito() {
         iconoCarrito.setAttribute( "href", "#" );
     }
 };
+
+function avisarProductoCarrito(){
+    avisoCarrito.style.transform = 'scale(2)'
+    setTimeout(function(){ 
+        avisoCarrito.style.transform = 'scale(1)'
+    }, 500);
+}
   
 function quitarItem(index) {
     carrito[index].cantidad = carrito[index].cantidad - 1;
@@ -135,6 +143,7 @@ function agregarItem(index) {
     carrito[index].cantidad = carrito[index].cantidad + 1;
     localStorage.carrito = JSON.stringify(carrito);
     cargarCarrito();
+    avisarProductoCarrito()
 };
 
 cargarCarrito();

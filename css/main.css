@@ -129,6 +129,7 @@ h2 {
   top: 30px;
   right: 45px;
   display: none;
+  transition: 0.3s all ease;
 }
 
 .header {
