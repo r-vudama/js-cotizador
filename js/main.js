@@ -1,15 +1,23 @@
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Chequea Local Storage
+// ------------------------------------------------------------------------------------------------------
 let carrito;
 if (localStorage.carrito) {carrito = JSON.parse(localStorage.carrito);}
 else {carrito = [];}
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Variables globales
+// ------------------------------------------------------------------------------------------------------
 const iconoCarrito = document.querySelector('.iconoCarrito');
 const avisoCarrito = document.querySelector('.avisoCarrito');
 const contenedorInstrumentos = document.querySelector('#contenedorInstrumentos');
 const contenedorCarrito = document.querySelector('#contenedor_carrito');
 const contenedorTotal = document.querySelector('#contenedor_total');
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ La base de datos se guarda en array instrumentos y ejecuta las funciones necesarias
+// ------------------------------------------------------------------------------------------------------
 let instrumentos = [];
-
 $.ajax({
     url: 'productos.json',
     success: function (data) {
@@ -25,27 +33,18 @@ $.ajax({
     }
 });
 
-let botonesMenu = document.querySelectorAll(".botonMenu").forEach(boton => {
-    boton.addEventListener('click', function() {
-        id = boton.id;
-        filtrarInstrumento();
-    })
-  });
-
-function filtrarInstrumento(){
-    contenedorInstrumentos.innerHTML = '';
-    instrumentos.filter(elem => elem.tipo == id).forEach((producto) => {
-        crearCard(producto);
-    });
-    agrandarImagen();
-};
-
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Muestra la totalidad de productos
+// ------------------------------------------------------------------------------------------------------
 function mostrarTodo() {
     instrumentos.forEach((producto) => {
         crearCard(producto);
     });
 };
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Crea la card de cada instrumento
+// ------------------------------------------------------------------------------------------------------
 function crearCard(producto){
     const instrumentoDiv = document.createElement('div');
         instrumentoDiv.setAttribute('class', 'instrumento');
@@ -56,7 +55,10 @@ function crearCard(producto){
     
         contenedorInstrumentos.appendChild(instrumentoDiv);
 };
-  
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Chequea cantidad de un producto
+// ------------------------------------------------------------------------------------------------------
 function cambiarCantidad(e) {
     if (e.target.value == 0) {carrito.splice(e.target.name, 1);}
     else {carrito[e.target.name].cantidad = e.target.value;}
@@ -64,6 +66,9 @@ function cambiarCantidad(e) {
     localStorage.carrito = JSON.stringify(carrito);
 };
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Agrega producto al carrito
+// ------------------------------------------------------------------------------------------------------
 function agregarInstrumento(index) {
     var producto = instrumentos[index];
     if (carrito.length > 0) {
@@ -87,6 +92,9 @@ function agregarInstrumento(index) {
     localStorage.carrito = JSON.stringify(carrito);
 };
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Crea productos agregados al carrito y habilita entrar al carrito desde el menu 
+// ------------------------------------------------------------------------------------------------------
 function cargarCarrito() {
     contenedorCarrito.innerHTML = '';
     contenedorTotal.innerHTML = '';
@@ -122,13 +130,9 @@ function cargarCarrito() {
     }
 };
 
-function avisarProductoCarrito(){
-    avisoCarrito.style.transform = 'scale(2)'
-    setTimeout(function(){ 
-        avisoCarrito.style.transform = 'scale(1)'
-    }, 500);
-}
-  
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Resta o suma el mismo producto
+// ------------------------------------------------------------------------------------------------------
 function quitarItem(index) {
     carrito[index].cantidad = carrito[index].cantidad - 1;
     if (carrito[index].cantidad <= 0) {

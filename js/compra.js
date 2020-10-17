@@ -1,3 +1,6 @@
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Trae datos desde Local Storage y los muestra en el html
+// ------------------------------------------------------------------------------------------------------
 const total = document.querySelector('#total');
 let productosLS = localStorage.getItem('carrito');
 let productosJson = JSON.parse(productosLS);
@@ -24,6 +27,9 @@ function agregarElementos(){
 
 agregarElementos();
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Vacia el carrito totalmente y limpia el local storage
+// ------------------------------------------------------------------------------------------------------
 const vaciarCarrito = document.querySelector('#botonVaciar');
 vaciarCarrito.addEventListener('click', function(){
     listaJson.innerHTML = '<h3 class="vacio">Carrito Vacío</h3><a href="index.html" class="vacioBack">Volver al shop</a>';
@@ -31,11 +37,13 @@ vaciarCarrito.addEventListener('click', function(){
     total.innerHTML = 'Total: $0';
 })
 
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Suma todos los subtotales de cada producto, y muestra el total
+// ------------------------------------------------------------------------------------------------------
 function calcularTotal(){
 
     let subtotales = document.getElementsByName('subtotalProducto');
     let suma = 0;
-
     subtotales.forEach((subtotal) => {
         suma = suma + Number(subtotal.innerText);
         total.innerHTML = `Total: $${new Intl.NumberFormat('es-ar').format(Number(suma))}`;
