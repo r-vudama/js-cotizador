@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------------------
-// ------------------ Agranda imagenes sobre una capa transparente, asignandoles clases definidas en css
+// ------------------ Agranda imagenes sobre una capa transparente, asignandoles clases definidas en CSS
 // ------------------------------------------------------------------------------------------------------
 const imagenesCapa = document.querySelector('.agregar-imagen');
 const contenedorCapa = document.querySelector('.imagenCapa');

@@ -49,3 +49,17 @@ function calcularTotal(){
         total.innerHTML = `Total: $${new Intl.NumberFormat('es-ar').format(Number(suma))}`;
     });
 };
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------ Confirma la compra siempre y cuando haya productos en el carrito
+// ------------------------------------------------------------------------------------------------------
+const confirmar = document.querySelector('#botonConfirmar');
+confirmar.addEventListener('click', function(){
+
+    if(localStorage.length == 0){
+        swal("No hay productos en tu carrito", "", "error");
+    } else{
+        swal("¡Compra confirmada!", "", "success");
+    }
+})
+
