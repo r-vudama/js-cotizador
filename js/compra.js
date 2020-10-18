@@ -28,12 +28,12 @@ function agregarElementos(){
 agregarElementos();
 
 // ------------------------------------------------------------------------------------------------------
-// ------------------ Vacia el carrito totalmente y limpia el local storage
+// ------------------ Vacia el carrito totalmente y lo borra del local storage
 // ------------------------------------------------------------------------------------------------------
 const vaciarCarrito = document.querySelector('#botonVaciar');
 vaciarCarrito.addEventListener('click', function(){
     listaJson.innerHTML = '<h3 class="vacio">Carrito Vacío</h3><a href="index.html" class="vacioBack">Volver al shop</a>';
-    localStorage.clear();
+    localStorage.removeItem('carrito');
     total.innerHTML = 'Total: $0';
 })
 
@@ -51,15 +51,14 @@ function calcularTotal(){
 };
 
 // ------------------------------------------------------------------------------------------------------
-// ------------------ Confirma la compra siempre y cuando haya productos en el carrito
+// ------------------ Confirma la compra siempre y cuando no se haya vaciado el carrito
 // ------------------------------------------------------------------------------------------------------
 const confirmar = document.querySelector('#botonConfirmar');
 confirmar.addEventListener('click', function(){
 
-    if(localStorage.length == 0){
+    if(localStorage.getItem('carrito') === null){
         swal("No hay productos en tu carrito", "", "error");
     } else{
         swal("¡Compra confirmada!", "", "success");
     }
 })
-

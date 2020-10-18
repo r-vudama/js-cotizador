@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------------------
-// ------------------ Chequea Local Storage
+// ------------------ Local Storage
 // ------------------------------------------------------------------------------------------------------
 let carrito;
 if (localStorage.carrito) {carrito = JSON.parse(localStorage.carrito);}
@@ -93,7 +93,7 @@ function agregarInstrumento(index) {
 };
 
 // ------------------------------------------------------------------------------------------------------
-// ------------------ Crea productos agregados al carrito y habilita entrar al carrito desde el menu 
+// ------------------ Carga productos agregados al carrito y habilita entrar al carrito desde el menu 
 // ------------------------------------------------------------------------------------------------------
 function cargarCarrito() {
     contenedorCarrito.innerHTML = '';
@@ -151,10 +151,3 @@ function agregarItem(index) {
 };
 
 cargarCarrito();
-
-
-
-
-
-
-

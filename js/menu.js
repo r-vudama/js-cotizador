@@ -20,8 +20,8 @@ function filtrarInstrumento(){
 // ------------------ Avisa en el icono de carrito que se agrego un producto
 // ------------------------------------------------------------------------------------------------------
 function avisarProductoCarrito(){
-    avisoCarrito.style.transform = 'scale(2)'
+    avisoCarrito.style.transform = 'scale(2)';
     setTimeout(function(){ 
-        avisoCarrito.style.transform = 'scale(1)'
+        avisoCarrito.style.transform = 'scale(1)';
     }, 500);
 }
